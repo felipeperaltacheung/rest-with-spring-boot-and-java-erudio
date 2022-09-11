@@ -8,11 +8,10 @@ import java.util.concurrent.atomic.AtomicLong;
 @RestController
 public class MathController {
 
-
     private  final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping(value = "/sum/{numberOne}/{numberTwo}",
-        method = RequestMethod.GET)
+    @RequestMapping(value = "/sum/{numberOne}/{numberTwo}", method = RequestMethod.GET)
+
     public Double sum(
             @PathVariable(value = "numberOne") String numberOne,
             @PathVariable(value = "numberTwo") String numberTwo
@@ -23,6 +22,72 @@ public class MathController {
         }
         return convertToDouble(numberOne) + convertToDouble(numberTwo);
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @RequestMapping(value = "/subtraction/{numberOne}/{numberTwo}", method = RequestMethod.GET)
+
+    public Double subtraction(
+            @PathVariable(value = "numberOne") String numberOne,
+            @PathVariable(value = "numberTwo") String numberTwo
+            ) throws Exception {
+
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+            throw new UnsupportedMathOperationException("Plz set a numeric value");
+        }
+        return convertToDouble(numberOne) - convertToDouble(numberTwo);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @RequestMapping(value = "/division/{numberOne}/{numberTwo}", method = RequestMethod.GET)
+
+    public Double division(
+            @PathVariable(value = "numberOne") String numberOne,
+            @PathVariable(value = "numberTwo") String numberTwo
+            ) throws Exception{
+
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+            throw new UnsupportedMathOperationException("plz set a numeric value");
+        }
+        return convertToDouble(numberOne) / convertToDouble(numberTwo);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @RequestMapping(value = "/average/{numberOne}/{numberTwo}")
+
+    public Double average(
+            @PathVariable(value = "numberOne") String numberOne,
+            @PathVariable(value = "numberTwo") String numberTwo
+            )throws Exception{
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
+            throw new UnsupportedMathOperationException("plz blabla");
+        }
+        return (convertToDouble(numberOne) + convertToDouble(numberOne)) / 2;
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @RequestMapping(value = "/multiplication/{numberOne}/{numberTwo}")
+
+    public Double multiplication(
+            @PathVariable(value = "numberOne") String numberOne,
+            @PathVariable(value = "numberTwo") String numberTwo
+    )throws Exception{
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
+            throw new UnsupportedMathOperationException("plz vbdldl");
+        }
+        return convertToDouble(numberOne) * convertToDouble(numberTwo);
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @RequestMapping(value = "/square-root/{number}")
+
+    public Double squareRoot(
+            @PathVariable(value = "number") String number
+    )throws Exception{
+        if(!isNumeric(number)){
+            throw new UnsupportedMathOperationException("plz iosdoid");
+        }
+        return Math.sqrt(convertToDouble(number));
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private Double convertToDouble(String strNumber) {
         if(strNumber == null) return 0D;
