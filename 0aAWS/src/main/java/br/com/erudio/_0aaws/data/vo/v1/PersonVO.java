@@ -1,26 +1,18 @@
-package br.com.erudio._0aaws.model;
+package br.com.erudio._0aaws.data.vo.v1;
 
-import jakarta.persistence.*;
 
 import java.io.Serializable;
 
-@Entity
-@Table(name = "person")
-public class Person implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PersonVO implements Serializable {
+
     private Long id;
-    @Column(name = "first_name", nullable = false, length = 80)
     private String firstName;
-    @Column(name = "last_name", nullable = false, length = 80)
     private String lastName;
-    @Column(nullable = false, length = 100)
     private String address;
-    @Column(nullable = false, length = 6)
     private String gender;
 
-    public Person() {
+    public PersonVO() {
     }
 
     public String getFirstName() {
